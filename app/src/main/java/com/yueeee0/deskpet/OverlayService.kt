@@ -127,9 +127,13 @@ class OverlayService : Service() {
     private fun setupOverlay() {
         windowManager = getSystemService(WINDOW_SERVICE) as WindowManager
 
+        val prefs = getSharedPreferences(PREFS, MODE_PRIVATE)
+        val petW = prefs.getInt(KEY_SIZE, 130)
+        val petH = (petW * 1.08).toInt()
+
         params = WindowManager.LayoutParams(
-            dpToPx(PET_W),
-            dpToPx(PET_H),
+            dpToPx(petW),
+            dpToPx(petH),
             WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
             WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE or
                     WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS or
