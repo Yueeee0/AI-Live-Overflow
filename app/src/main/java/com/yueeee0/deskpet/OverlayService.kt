@@ -48,6 +48,78 @@ class OverlayService : Service() {
         startForeground(NOTIFICATION_ID, notification)
         setupOverlay()
         startNotificationUpdater()
+        startAppWatcher()
+    }
+
+    private var currentApp = ""
+    private var lastReaction = 0L
+
+    private fun startAppWatcher() {
+        val handler = Handler(Looper.getMainLooper())
+        handler.post(object : Runnable {
+            override fun run() {
+                try {
+                    val app = getForegroundApp()
+                    if (app != currentApp) {
+                        currentApp = app
+                        reactToApp(app)
+                    }
+                } catch (_: Exception) {}
+                handler.postDelayed(this, 3000)
+            }
+        })
+    }
+
+    private fun getForegroundApp(): String {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            val usm = getSystemService(Context.USAGE_STATS_SERVICE) as UsageStatsManager
+            val endTime = System.currentTimeMillis()
+            val beginTime = endTime - 10000
+            val stats: List<UsageStats> = usm.queryUsageStats(
+                UsageStatsManager.INTERVAL_DAILY, beginTime, endTime
+            )
+            if (stats.isNotEmpty()) {
+                val sorted = stats.sortedByDescending { it.lastTimeUsed }
+                return sorted.firstOrNull()?.packageName ?: ""
+            }
+        }
+        return ""
+    }
+
+    private fun reactToApp(pkg: String) {
+        val now = System.currentTimeMillis()
+        if (now - lastReaction < 5000) return
+        lastReaction = now
+        val mood: String
+        val msg: String
+        when {
+            pkg.contains("aweme") || pkg.contains("douyin") -> { mood = "angry"; msg = "又在刷抖音！" }
+            pkg.contains("xhs") || pkg.contains("rednote") -> { mood = "happy"; msg = "刷小红书啦？" }
+            pkg.contains("taobao") || pkg.contains("tmall") -> { mood = "surprised"; msg = "又要花钱？" }
+            pkg.contains("bilibili") -> { mood = "happy"; msg = "看视频呀" }
+            pkg.contains("weixin") || pkg.contains("mm") -> { mood = "idle"; msg = "" }
+            pkg.contains("qq") && !pkg.contains("qqmusic") -> { mood = "idle"; msg = "" }
+            pkg.contains("juejin") || pkg.contains("study") || pkg.contains("course") -> { mood = "happy"; msg = "好好学习！" }
+            pkg.contains("netease") || pkg.contains("cloudmusic") || pkg.contains("kugou") -> { mood = "love"; msg = "听歌呀" }
+            pkg.contains("settings") -> { mood = "surprised"; msg = "在设置里干嘛" }
+            pkg.contains("com.yueeee0.deskpet") || pkg == packageName -> { mood = "love"; msg = "我在呢" }
+            else -> { mood = "idle"; msg = "" }
+        }
+        changeMood(mood)
+        if (msg.isNotEmpty()) say(msg)
+    }
+
+    private fun changeMood(mood: String) {
+        overlayView?.evaluateJavascript(
+            "window.pet && window.pet.setMood('$mood')", null
+        )
+    }
+
+    private fun say(text: String) {
+        val safe = text.replace("'", "\\'")
+        overlayView?.evaluateJavascript(
+            "window.pet && window.pet.say('$safe')", null
+        )
     }
 
     private fun setupOverlay() {
