@@ -95,7 +95,8 @@ class OverlayService : Service() {
         when {
             pkg.contains("aweme") || pkg.contains("douyin") -> { mood = "angry"; msg = "又在刷抖音！" }
             pkg.contains("xhs") || pkg.contains("rednote") -> { mood = "happy"; msg = "刷小红书啦？" }
-            pkg.contains("taobao") || pkg.contains("tmall") -> { mood = "surprised"; msg = "又要花钱？" }
+            pkg.contains("pinduoduo") || pkg.contains("xunmeng") -> { mood = "surprised"; msg = "拼多多！砍一刀？" }
+            pkg.contains("taobao") || pkg.contains("tmall") || pkg.contains("jd") -> { mood = "surprised"; msg = "又要花钱？" }
             pkg.contains("bilibili") -> { mood = "happy"; msg = "看视频呀" }
             pkg.contains("weixin") || pkg.contains("mm") -> { mood = "idle"; msg = "" }
             pkg.contains("qq") && !pkg.contains("qqmusic") -> { mood = "idle"; msg = "" }
