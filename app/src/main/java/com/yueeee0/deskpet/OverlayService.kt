@@ -88,23 +88,26 @@ class OverlayService : Service() {
 
     private fun reactToApp(pkg: String) {
         val now = System.currentTimeMillis()
-        if (now - lastReaction < 5000) return
+        if (now - lastReaction < 2500) return
         lastReaction = now
         val mood: String
         val msg: String
         when {
+            pkg.contains("rikkahub") || pkg.contains("rerere") -> { mood = "love"; msg = "回来啦！" }
             pkg.contains("aweme") || pkg.contains("douyin") -> { mood = "angry"; msg = "又在刷抖音！" }
             pkg.contains("xhs") || pkg.contains("rednote") -> { mood = "happy"; msg = "刷小红书啦？" }
             pkg.contains("pinduoduo") || pkg.contains("xunmeng") -> { mood = "surprised"; msg = "拼多多！砍一刀？" }
             pkg.contains("taobao") || pkg.contains("tmall") || pkg.contains("jd") -> { mood = "surprised"; msg = "又要花钱？" }
             pkg.contains("bilibili") -> { mood = "happy"; msg = "看视频呀" }
+            pkg.contains("quark") -> { mood = "happy"; msg = "在查什么呀" }
+            pkg.contains("deepseek") -> { mood = "surprised"; msg = "和它聊什么" }
+            pkg.contains("Alipay") -> { mood = "surprised"; msg = "付钱啦？" }
             pkg.contains("weixin") || pkg.contains("mm") -> { mood = "idle"; msg = "" }
             pkg.contains("qq") && !pkg.contains("qqmusic") -> { mood = "idle"; msg = "" }
             pkg.contains("chaoxing") || pkg.contains("zhihuishu") || pkg.contains("juejin") || pkg.contains("study") || pkg.contains("course") -> { mood = "happy"; msg = "好好学习！" }
             pkg.contains("meituan") || pkg.contains("sankuai") -> { mood = "happy"; msg = "点外卖呀？给我带一份" }
             pkg.contains("netease") || pkg.contains("cloudmusic") || pkg.contains("kugou") -> { mood = "love"; msg = "听歌呀" }
             pkg.contains("settings") -> { mood = "surprised"; msg = "在设置里干嘛" }
-            pkg.contains("orange") -> { mood = "love"; msg = "回来啦！" }
             pkg.contains("com.yueeee0.deskpet") || pkg == packageName -> { mood = "love"; msg = "我在呢" }
             else -> { mood = "idle"; msg = "" }
         }
