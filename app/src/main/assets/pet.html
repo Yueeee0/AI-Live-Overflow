@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<title>pet</title>
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 html,body{width:100%;height:100%;background:transparent;overflow:hidden;font-family:sans-serif;user-select:none;-webkit-user-select:none}
@@ -18,31 +19,52 @@ svg{width:100%;height:100%;display:block}
 @keyframes blink{0%,92%,100%{transform:scaleY(1)}95%{transform:scaleY(0.1)}}
 .eye-group{animation:blink 3.5s infinite;transform-box:fill-box;transform-origin:center}
 </style>
-</>
- id< viewBox="0 0 200 220"="http://www.w3.org/200="body-glow" cx="100" cy="140"" fill="#d8c8f0"/>
-  <ellipse cx="140" rx="60" ry="50" fill="#1a1528" stroke="#d8c8f0" stroke-width="2"/>
-  <path class="tail" d="M145,150 Q170,130 180,110 Q175,125 160,145 Z" fill="#d8c8f0" opacity="0.4"/>
-  <g class="eye-group">
-    <ellipse class="eye" cx="80" cy="120" rx="11" ry="13" fill="#d8c8f0"/>
-    <ellipse class="pupil" cx="80" cy="122" rx="6" ry="8" fill="#1a1528"/>
-  </g>
-  <g class="eye-group">
-    <ellipse class="eye" cx="120" cy="120" rx="11" ry="13" fill="#d8c8f0"/>
-    <ellipse class="pupil" cx="120" cy="122" rx="6" ry="8" fill="#1a1528"/>
-  </g>
-  <path="mouth" id="" d="M85,145 Q100,158 115,145" stroke="#d8c80 stroke="none" stroke-linecap="round"/>
-  <ellipse cx="68"15"/>
-  <ipse cx"135" rx="10" ry="6d8155"" font-size="" fill="#d8c8f00.3">*</ =: null,
-  current 'id    var mouth = document.getElementById('mouth = document.querySelectorAll('. 'happy'){
- mouth.setAttribute('d','M80,145 Q100,162 120,145');
+</head>
+<body>
+<div id="pet">
+<svg viewBox="0 200="/vg">
+<ellipse class="body-glow" cx="100" cy="140" rx="70" ry="55" fill="#d8c8f0"/>
+<ellipse cx="100" cy="140" rx="60" ry="50" fill="#1a1528" stroke="#d8c8f0" stroke-width="2"/>
+<path class="tail" d="M145,150 Q170,130 180,110 Q175,125 160,145 Z" fill="#d8c8f0" opacity="0.4"/>
+<g class="eye-group">
+<ellipse class="eye" cx="80" cy="120" rx="11" ry="13" fill="#d8c8f0"/>
+<ellipse class="pupil" cx="80" cy="122" rx="6" ry="8" fill="#1a1528"/>
+</g>
+<g class="eye-group">
+<ellipse class="eye" cx="120" cy="120" rx="11" ry="13" fill="#d8c8f0"/>
+<ellipse class="pupil" cx="120" cy="122" rx="6" ry="8" fill="#1a1528"/>
+</g>
+<path class="mouth" id="mouth" d="M85,145 Q100,158 115,145" stroke="#d8c8f0" stroke-width="2" fill="none" stroke-linecap="round"/>
+<ellipse cx="68" cy="135" rx="10" ry="6" fill="#d8c8f0" opacity="0.15"/>
+<ellipse cx="132" cy="135" rx="10" ry="6" fill="#d8c8f0" opacity="0.15"/>
+</svg>
+</div>
+<script>
+var pet = {
+  timer: null,
+  current: 'idle',
+  setMood: function(m){
+    var mouth = document.getElementById('mouth');
+    var groups = document.querySelectorAll('.eye-group');
+    if(m === 'happy'){
+      mouth.setAttribute('d','M80,145 Q100,162 120,145');
     }else if(m === 'sleep'){
-      mouth.setAttribute('d','M90,148 Q100,      groups.forEach(function(gg.style.animation='none';g.style.transform='scaleY(0.1)'});
-    }else if(m90,143150 110,143');
+      mouth.setAttribute('d','M90,148 Q100,152 110,148');
+      groups.forEach(function(g){g.style.animation='none';g.style.transform='scaleY(0.1)'});
+    }else if(m === 'love'){
+      mouth.setAttribute('d','M90,143 Q100,150 110,143');
       groups.forEach(function(g){g.style.animation='none';g.style.transform='scaleY(0.8)'});
     }else{
-      mouth.setAttribute('d','M85,145 Q100,115,.forEachink 3.5s'.current = m;
- (this.timer this;
- = setTimeout(function(){self.setMood('idle')},2000);
+      mouth.setAttribute('d','M85,145 Q100,158 115,145');
+      groups.forEach(function(g){g.style.animation='blink 3.5s infinite';g.style.transform=''});
+    }
+    this.current = m;
+  },
+  tap: function(){
+    this.setMood('happy');
+    clearTimeout(this.timer);
+    var self = this;
+    this.timer = setTimeout(function(){self.setMood('idle')},2000);
   },
   tripleTap: function(){
     this.setMood('love');
