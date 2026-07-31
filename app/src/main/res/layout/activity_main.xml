@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="32dp"
+    android:background="#020108">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="⭐"
+        android:textSize="48dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="小渡"
+        android:textSize="24dp"
+        android:textColor="#d8c8f0"
+        android:layout_marginTop="16dp" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="悬浮窗桌宠"
+        android:textSize="14dp"
+        android:textColor="#7a6a9a"
+        android:layout_marginTop="4dp" />
+
+    <Button
+        android:id="@+id/btn_start"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="叫小渡出来"
+        android:textColor="#020108"
+        android:backgroundTint="#d8c8f0"
+        android:layout_marginTop="32dp" />
+
+    <Button
+        android:id="@+id/btn_stop"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="让小渡回去"
+        android:textColor="#7a6a9a"
+        android:backgroundTint="#1a1528"
+        android:layout_marginTop="12dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="需要悬浮窗权限才能显示\n如果没看到小渡，请手动授权"
+        android:textSize="12dp"
+        android:textColor="#5a4a7a"
+        android:gravity="center"
+        android:layout_marginTop="24dp" />
+
+</LinearLayout>
