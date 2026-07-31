@@ -46,10 +46,20 @@ svg{width:100%;height:100%;display:block;overflow:visible}
 <script>
 var pet = {
   timer: null,
+  bubbleTimer: null,
   current: 'idle',
   setMood: function(m){
     var mouth = document.getElementById('mouth');
     var groups = document.querySelectorAll('.eye-group');
+    var browL = document.getElementById('brow-l');
+    var browR = document.getElementById('brow-r');
+    var tear = document.getElementById('tear');
+    var blush = document.querySelectorAll('.blush');
+    browL.setAttribute('opacity','0');
+    browR.setAttribute('opacity','0');
+    tear.setAttribute('opacity','0');
+    blush.forEach(function(b){b.setAttribute('opacity','0.15')});
+    groups.forEach(function(g){g.style.animation='blink 3.5s infinite';g.style.transform=''});
     if(m === 'happy'){
       mouth.setAttribute('d','M80,145 Q100,162 120,145');
     }else if(m === 'sleep'){
@@ -57,12 +67,38 @@ var pet = {
       groups.forEach(function(g){g.style.animation='none';g.style.transform='scaleY(0.1)'});
     }else if(m === 'love'){
       mouth.setAttribute('d','M90,143 Q100,150 110,143');
+      blush.forEach(function(b){b.setAttribute('opacity','0.35')});
       groups.forEach(function(g){g.style.animation='none';g.style.transform='scaleY(0.8)'});
+    }else if(m === 'angry'){
+      mouth.setAttribute('d','M88,150 Q100,144 112,150');
+      browL.setAttribute('d','M66,102 Q80,96 92,102');
+      browL.setAttribute('opacity','1');
+      browR.setAttribute('d','M108,102 Q120,96 132,102');
+      browR.setAttribute('opacity','1');
+    }else if(m === 'sad'){
+      mouth.setAttribute('d','M88,152 Q100,146 112,152');
+      browL.setAttribute('d','M68,100 Q80,104 92,100');
+      browL.setAttribute('opacity','1');
+      browR.setAttribute('d','M108,100 Q120,104 132,100');
+      browR.setAttribute('opacity','1');
+      tear.setAttribute('opacity','1');
+    }else if(m === 'surprised'){
+      mouth.setAttribute('d','M93,145 Q100,155 107,145');
+      mouth.setAttribute('stroke-width','2.5');
+      groups.forEach(function(g){g.style.animation='none';g.style.transform='scale(1.2)'});
     }else{
       mouth.setAttribute('d','M85,145 Q100,158 115,145');
-      groups.forEach(function(g){g.style.animation='blink 3.5s infinite';g.style.transform=''});
     }
+    mouth.setAttribute('stroke-width','2');
     this.current = m;
+  },
+  say: function(text){
+    var bubble = document.getElementById('bubble');
+    bubble.textContent = text;
+    bubble.style.display = 'block';
+    clearTimeout(this.bubbleTimer);
+    var self = this;
+    this.bubbleTimer = setTimeout(function(){bubble.style.display='none'},4000);
   },
   tap: function(){
     this.setMood('happy');
@@ -72,6 +108,7 @@ var pet = {
   },
   tripleTap: function(){
     this.setMood('love');
+    this.say('喜欢你');
     clearTimeout(this.timer);
     var self = this;
     this.timer = setTimeout(function(){self.setMood('idle')},3000);
@@ -79,11 +116,12 @@ var pet = {
 };
 window.pet = pet;
 setInterval(function(){
-  if(Math.random()<0.1 && pet.current==='idle'){
-    pet.setMood('happy');
-    setTimeout(function(){pet.setMood('idle')},3000);
+  if(Math.random()<0.12 && pet.current==='idle'){
+    var moods = ['happy','sleep','surprised'];
+    pet.setMood(moods[Math.floor(Math.random()*3)]);
+    setTimeout(function(){pet.setMood('idle')},4000);
   }
-},15000);
+},20000);
 </script>
 </body>
 </html>
