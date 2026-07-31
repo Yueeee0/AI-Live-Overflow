@@ -225,6 +225,12 @@ class OverlayService : Service() {
         )
     }
 
+    private fun onDragged() {
+        overlayView?.evaluateJavascript(
+            "window.pet && window.pet.dragged()", null
+        )
+    }
+
     private var notifMessages = listOf(
         "在看你哦",
         "戳我一下",
