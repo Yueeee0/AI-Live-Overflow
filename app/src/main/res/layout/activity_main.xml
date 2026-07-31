@@ -57,12 +57,30 @@
         android:layout_marginTop="12dp" />
 
     <TextView
+        android:id="@+id/size_label"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="大小：130"
+        android:textSize="14dp"
+        android:textColor="#d8c8f0"
+        android:layout_marginTop="24dp"
+        android:layout_gravity="center_horizontal" />
+
+    <SeekBar
+        android:id="@+id/seek_size"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="需要悬浮窗权限才能显示\n如果没看到小渡，请手动授权"
+        android:max="120"
+        android:progress="50"
+        android:layout_marginTop="4dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="拖动调节小渡大小，松手生效\n需要悬浮窗权限才能显示"
         android:textSize="12dp"
         android:textColor="#5a4a7a"
         android:gravity="center"
-        android:layout_marginTop="24dp" />
+        android:layout_marginTop="16dp" />
 
 </LinearLayout>
