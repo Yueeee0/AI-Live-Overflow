@@ -191,7 +191,9 @@ class OverlayService : Service() {
                     true
                 }
                 MotionEvent.ACTION_UP -> {
-                    if (!hasMoved) {
+                    if (hasMoved) {
+                        onDragged()
+                    } else {
                         tapCount++
                         val now = System.currentTimeMillis()
                         if (now - lastTapTime > 500) tapCount = 1
