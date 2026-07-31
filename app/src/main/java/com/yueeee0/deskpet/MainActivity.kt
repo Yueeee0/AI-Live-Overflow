@@ -28,6 +28,14 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, "小渡回去了", Toast.LENGTH_SHORT).show()
         }
 
+        findViewById<Button>(R.id.btn_usage).setOnClickListener {
+            try {
+                startActivity(Intent(Settings.ACTION_USAGE_ACCESS_SETTINGS))
+            } catch (_: Exception) {
+                Toast.makeText(this, "请在设置里搜索「使用情况访问」", Toast.LENGTH_LONG).show()
+            }
+        }
+
         if (checkOverlayPermission()) {
             startService(Intent(this, OverlayService::class.java))
         }
