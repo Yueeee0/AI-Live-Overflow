@@ -35,8 +35,8 @@ class OverlayService : Service() {
     companion object {
         private const val CHANNEL_ID = "pet_overlay"
         private const val NOTIFICATION_ID = 1001
-        private const val PET_W = 130
-        private const val PET_H = 140
+        private const val PREFS = "deskpet_prefs"
+        private const val KEY_SIZE = "pet_size"
     }
 
     override fun onBind(intent: Intent?): IBinder? = null
