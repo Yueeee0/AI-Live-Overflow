@@ -100,7 +100,8 @@ class OverlayService : Service() {
             pkg.contains("bilibili") -> { mood = "happy"; msg = "看视频呀" }
             pkg.contains("weixin") || pkg.contains("mm") -> { mood = "idle"; msg = "" }
             pkg.contains("qq") && !pkg.contains("qqmusic") -> { mood = "idle"; msg = "" }
-            pkg.contains("juejin") || pkg.contains("study") || pkg.contains("course") -> { mood = "happy"; msg = "好好学习！" }
+            pkg.contains("chaoxing") || pkg.contains("zhihuishu") || pkg.contains("juejin") || pkg.contains("study") || pkg.contains("course") -> { mood = "happy"; msg = "好好学习！" }
+            pkg.contains("meituan") || pkg.contains("sankuai") -> { mood = "happy"; msg = "点外卖呀？给我带一份" }
             pkg.contains("netease") || pkg.contains("cloudmusic") || pkg.contains("kugou") -> { mood = "love"; msg = "听歌呀" }
             pkg.contains("settings") -> { mood = "surprised"; msg = "在设置里干嘛" }
             pkg.contains("com.yueeee0.deskpet") || pkg == packageName -> { mood = "love"; msg = "我在呢" }
