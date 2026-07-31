@@ -47,6 +47,15 @@
         android:backgroundTint="#1a1528"
         android:layout_marginTop="12dp" />
 
+    <Button
+        android:id="@+id/btn_usage"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:text="开启app感知（让小渡知道你在干嘛）"
+        android:textColor="#7a6a9a"
+        android:backgroundTint="#1a1528"
+        android:layout_marginTop="12dp" />
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
