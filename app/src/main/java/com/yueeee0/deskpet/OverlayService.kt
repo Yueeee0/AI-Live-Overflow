@@ -1,9 +1,12 @@
 package com.yueeee0.deskpet
 
 import android.app.*
+import android.app.usage.UsageStats
+import android.app.usage.UsageStatsManager
 import android.content.Context
 import android.content.Intent
 import android.graphics.PixelFormat
+import android.provider.Settings
 import android.os.Build
 import android.os.IBinder
 import android.os.Handler
