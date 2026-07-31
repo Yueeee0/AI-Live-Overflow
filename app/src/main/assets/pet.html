@@ -105,16 +105,25 @@ var pet = {
   },
   tap: function(){
     this.setMood('happy');
+    var msgs = ['嘿嘿','戳我干嘛','痒痒~','在呢','诶嘿'];
+    this.say(msgs[Math.floor(Math.random()*msgs.length)]);
     clearTimeout(this.timer);
     var self = this;
-    this.timer = setTimeout(function(){self.setMood('idle')},2000);
+    this.timer = setTimeout(function(){self.setMood('idle')},2500);
+  },
+  dragged: function(){
+    this.setMood('surprised');
+    this.say('晕~');
+    clearTimeout(this.timer);
+    var self = this;
+    this.timer = setTimeout(function(){self.setMood('idle')},2500);
   },
   tripleTap: function(){
     this.setMood('love');
-    this.say('喜欢你');
+    this.say('喜欢你！');
     clearTimeout(this.timer);
     var self = this;
-    this.timer = setTimeout(function(){self.setMood('idle')},3000);
+    this.timer = setTimeout(function(){self.setMood('idle')},3500);
   }
 };
 window.pet = pet;
