@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{
+  width:100%;height:100%;
+  background:transparent;
+  overflow:hidden;
+  font-family:sans-serif;
+  user-select:none;
+  -webkit-user-select:none;
+}
+#pet{
+  position:absolute;
+  bottom:0;left:50%;
+  transform:translateX(-50%);
+  width:140px;height:155px;
+}
+svg{width:100%;height:100%;display:block}
+.mouth{transition:all 0.3s ease}
+.eye{transition:all 0.4s ease}
+.body-glow{animation:breathe 3s ease-in-out infinite}
+@keyframes breathe{
+  0%,100%{opacity:0.3;transform:scale(1)}
+  50%{opacity:0.6;transform:scale(1.03)}
+}
+@keyframes float{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+#pet{animation:float 4s ease-in-out infinite}
+@keyframes waketail{
+  0%,100%{transform:rotate(-5deg)}
+  50%{transform:rotate(5deg)}
+}
+.tail{animation:waketail 1.5s ease-in-out infinite;transform-origin:center top}
+@keyframes blink{
+  0%,95%,100%{transform:scaleY(1)}
+  97%{transform:scaleY(0.1)}
+}
+.blink{animation:blink 3.5s infinite}
+</style>
+</head>
+<body>
+<div id="pet">
+<svg viewBox="0 0 200 220" xmlns="http://www.w3.org/2000/svg">
+  <ellipse class="body-glow" cx="100" cy="140" rx="70" ry="55" fill="#d8c8f0"/>
+  <ellipse cx="100" cy="140" rx="60" ry="50" fill="#1a1528" stroke="#d8c8f0" stroke-width="2"/>
+  <path class="tail" d="M145,150 Q170,130 180,110 Q175,125 160,145 Z" fill="#d8c8f0" opacity="0.4"/>
+  <ellipse class="eye" id="le" cx="80" cy="120" rx="10" ry="12" fill="#d8c8f0"/>
+  <ellipse class="eye blink" cx="80" cy="120" rx="8" ry="10" fill="#1a1528"/>
+  <ellipse class="eye" id="re" cx" rx1280 class cx="="=""/>
+115,145" stroke="#" fill strokeroundell""="="#0 opacity"/>
+ipse" rx="d8c8f0" opacitytext fill="#d8c8f0" opacity="0.3">✦</text>
+</svg>
+</div>
+<script>
+var pet = {
+  timer: null,
+  current: 'idle',
+  setMood: function(m){
+    var mouth = document.getElementById('mouth');
+    var le = document.querySelector('#le + ellipse');
+    var re = document.querySelector('#re + ellipse');
+    if(m === mouthd Q     ===     ('M Q      ','.set2 if'){
+Attribute90100,.set');('        ','145158');
+ry.set10   ;
+:.set');
+.t self this(functionood}, :.set');
+Timeout   ;
+ setTimeoutMle0windowset var();
+(r < 0.1 && pet.current === 'idle'){
+    pet.setMood('happy');
+    setTimeout(function(){pet.setMood('idle')}, 3000);
+  }
+}, 15000);
+</script>
+</body>
+</html>
