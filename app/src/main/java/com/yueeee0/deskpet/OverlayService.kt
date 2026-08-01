@@ -250,9 +250,12 @@ class OverlayService : Service() {
         handler.post(object : Runnable {
             override fun run() {
                 if (notifIndex >= notifMessages.size) notifIndex = 0
-                val notification = buildNotification(notifMessages[notifIndex])
+                val msg = notifMessages[notifIndex]
+                val notification = buildNotification(msg)
                 val mgr = getSystemService(NOTIFICATION_SERVICE) as NotificationManager
                 mgr.notify(NOTIFICATION_ID, notification)
+                // 同步冒泡到小头上
+                say(msg)
                 notifIndex++
                 handler.postDelayed(this, 3600000)
             }
